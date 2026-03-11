@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study 01 — Restaurer l'évidence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        charcoal: '#0E0F12',
+                        graphite: '#171A1F',
+                        ivory: '#F2EFE8',
+                        gold: '#C9A46A',
+                        mist: '#9AA0A6'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0E0F12; color: #F2EFE8; overflow-x: hidden; }
+        .bg-grain::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+            mix-blend-mode: overlay;
+        }
+        .img-placeholder {
+            background-color: #171A1F;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px dashed rgba(201,164,106,0.3);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .fade-in-section {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible { opacity: 1; transform: none; }
+        .back-btn {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(14,15,18,0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(201,164,106,0.2);
+            color: #9AA0A6;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            border-radius: 2px;
+        }
+        .back-btn:hover { color: #C9A46A; border-color: rgba(201,164,106,0.5); }
+        .back-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; }
+
+        /* AVANT/APRÈS — FIX MOBILE */
+        .split-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 2px;
+        }
+        .split-panel {
+            flex: 1;
+            position: relative;
+            height: 70vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #1A1D22;
+        }
+        @media (max-width: 767px) {
+            .split-container {
+                flex-direction: column;
+            }
+            .split-panel {
+                height: 60vw;
+                width: 100%;
+            }
+        }
+
+        /* CASCADE — FIX MOBILE */
+        .cascade-box {
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(23,26,31,0.2);
+            padding: 24px 32px;
+            width: 100%;
+            max-width: 340px;
+            transition: border-color 0.3s;
+            text-align: center;
+        }
+        @media (max-width: 640px) {
+            .cascade-box { padding: 18px 20px; max-width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-grain font-sans antialiased selection:bg-gold selection:text-charcoal">
+
+    <a class='back-btn' href='/'>
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+        </svg>
+        Accueil
+    </a>
+
+    <header class="fixed top-0 w-full p-8 z-40 mix-blend-difference flex justify-between items-center">
+        <div class="text-[10px] tracking-[0.3em] font-semibold text-ivory uppercase">Case Study</div>
+        <div class="text-[10px] tracking-[0.3em] font-semibold text-ivory uppercase">2026</div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section class="min-h-[50vh] flex flex-col justify-end px-6 md:px-16 pb-24 max-w-[1600px] mx-auto pt-32 fade-in-section">
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight tracking-tight text-ivory max-w-5xl">
+                Restaurer <br><span class="text-gold italic">l'évidence.</span>
+            </h1>
+        </section>
+
+        <!-- GRILLE 3 IMAGES -->
+        <section class="py-24 px-6 md:px-16 max-w-[1800px] mx-auto fade-in-section border-t border-white/5">
+            <div class="mb-16 max-w-2xl">
+                <h2 class="font-serif text-3xl md:text-4xl text-ivory mb-4">Une marque premium. <br>Trois langages visuels.</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full">
+                <div class="w-full img-placeholder" style="aspect-ratio:4/5; background-image: url('https://i.imgur.com/BT8XjrC.png')"></div>
+                <div class="w-full img-placeholder" style="aspect-ratio:4/5; background-image: url('https://i.imgur.com/5ZknqGL.png')"></div>
+                <div class="w-full img-placeholder" style="aspect-ratio:4/5; background-image: url('https://i.imgur.com/oDy0uju.png')"></div>
+            </div>
+        </section>
+
+        <!-- IMAGE ANNOTÉE -->
+        <section class="py-32 px-6 md:px-16 max-w-[1400px] mx-auto fade-in-section">
+            <div class="relative w-full img-placeholder group/main"
+                 style="aspect-ratio:16/9; background-image: url('https://i.imgur.com/8PbCrs1.png'); background-size: cover; background-position: center;">
+
+                <div class="absolute top-[20%] left-[25%] flex items-center gap-3 z-10 group cursor-pointer">
+                    <div class="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center bg-transparent group-hover:border-gold transition-all duration-500">
+                        <div class="w-1 h-1 bg-white/40 rounded-full group-hover:bg-gold transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="w-10 h-[1px] bg-gold/50"></div>
+                        <p class="text-[11px] font-sans tracking-[0.12em] uppercase text-gold">Lumière dramatique non alignée avec l'univers naturel solaire.</p>
+                    </div>
+                </div>
+
+                <div class="absolute top-[50%] right-[30%] flex flex-row-reverse items-center gap-3 z-10 group cursor-pointer">
+                    <div class="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center bg-transparent group-hover:border-gold transition-all duration-500">
+                        <div class="w-1 h-1 bg-white/40 rounded-full group-hover:bg-gold transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex flex-row-reverse items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="w-10 h-[1px] bg-gold/50"></div>
+                        <p class="text-[11px] font-sans tracking-[0.12em] uppercase text-gold">Logotype minimal cohérent, mais renforcé différemment selon l'univers lumineux.</p>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-[20%] left-[40%] flex flex-col items-center gap-3 z-10 group cursor-pointer">
+                    <div class="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center bg-transparent group-hover:border-gold transition-all duration-500">
+                        <div class="w-1 h-1 bg-white/40 rounded-full group-hover:bg-gold transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex flex-col items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <div class="w-[1px] h-8 bg-gold/50"></div>
+                        <p class="text-[11px] font-sans tracking-[0.12em] uppercase text-gold">Contraste excessif — rupture avec la palette sable chaude.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CASCADE -->
+        <section class="py-32 px-6 max-w-[800px] mx-auto text-center fade-in-section">
+            <h3 class="text-[10px] tracking-[0.3em] text-mist font-semibold uppercase mb-24">La cascade de dévaluation</h3>
+            <div class="flex flex-col items-center">
+                <div class="cascade-box hover:border-white/10">
+                    <p class="font-serif text-2xl text-ivory mb-2">Incohérence</p>
+                    <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-mist opacity-50">Ressenti : Dissonance visuelle</p>
+                </div>
+                <div class="py-5 text-gold text-xl opacity-50 font-light">↓</div>
+                <div class="cascade-box hover:border-white/10">
+                    <p class="font-serif text-2xl text-ivory mb-2">Perception instable</p>
+                    <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-mist opacity-50">Ressenti : Doute sur la qualité</p>
+                </div>
+                <div class="py-5 text-gold text-xl opacity-50 font-light">↓</div>
+                <div class="cascade-box" style="border-color:rgba(201,164,106,0.3);">
+                    <p class="font-serif text-2xl text-gold italic mb-2">Friction prix</p>
+                    <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-mist opacity-50">Ressenti : "C'est trop cher pour ce que c'est"</p>
+                </div>
+                <div class="py-5 text-gold text-xl opacity-50 font-light">↓</div>
+                <div class="cascade-box" style="border-color:#C9A46A; background:#0E0F12; padding:32px;">
+                    <p class="font-sans font-semibold tracking-widest uppercase text-sm text-ivory mb-2">Dépendance publicitaire</p>
+                    <p class="font-sans text-[9px] tracking-[0.2em] uppercase text-mist opacity-70">Vous payez l'acquisition pour compenser</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVANT / APRÈS — VERTICAL STACK, hauteurs identiques -->
+        <section class="py-16 fade-in-section" style="background-color:#111418;">
+            <div class="px-6 md:px-16 max-w-[1400px] mx-auto mb-12">
+                <h2 class="font-serif text-4xl text-ivory">La Preuve.</h2>
+            </div>
+            <div style="max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;flex-direction:column;gap:3px;">
+                <div style="position:relative;">
+                    <img src="https://i.imgur.com/LQ4dX8E.png" alt="Avant" style="width:100%;height:auto;display:block;background-color:#1A1D22;">
+                    <div style="position:absolute;top:16px;left:16px;padding:6px 14px;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#9AA0A6;background:rgba(14,15,18,0.8);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);">Avant</div>
+                </div>
+                <div style="position:relative;margin-top:3px;">
+                    <img src="https://i.imgur.com/TSpLDiK.png" alt="Après" style="width:100%;height:auto;display:block;background-color:#1A1D22;">
+                    <div style="position:absolute;top:16px;left:16px;padding:6px 14px;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#C9A46A;background:rgba(14,15,18,0.8);backdrop-filter:blur(8px);border:1px solid rgba(201,164,106,0.4);">Après</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTÈME — scroll horizontal natif -->
+        <section class="py-16 fade-in-section" style="background-color:#0E0F12;">
+            <div class="px-6 md:px-16 max-w-[1600px] mx-auto mb-10">
+                <h2 class="font-serif text-4xl text-ivory mb-3">Le Système.</h2>
+                <p class="text-mist font-sans text-sm tracking-widest uppercase opacity-60">Palette • Typographie • Lumière</p>
+            </div>
+            <!-- Wrapper scroll horizontal sur mobile, plein sur desktop -->
+            <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:1rem;">
+                <div style="min-width:900px;padding:0 1.5rem;">
+                    <img src="https://i.imgur.com/a1SdtTu.jpg" alt="Système AUREM" style="width:100%;height:auto;display:block;">
+                </div>
+            </div>
+            <p class="md:hidden text-center font-sans" style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#333;margin-top:12px;">← Glisser pour explorer →</p>
+        </section>
+
+        <footer class="py-32 border-t border-white/5 text-center fade-in-section">
+            <h2 class="font-serif text-3xl md:text-5xl text-gold italic mb-12 px-6">L'évidence ne s'explique pas.<br>Elle se constate.</h2>
+            <a href="https://cal.com/stefan-atanowski-ogirbz/echange-strategique" target="_blank" class="inline-block border border-gold text-ivory font-sans text-xs tracking-[0.2em] uppercase px-12 py-5 hover:bg-gold hover:text-charcoal transition-colors">
+                Initier une discussion
+            </a>
+        </footer>
+
+    </main>
+
+    <script>
+        // Proof carousel
+        let proofCurrent = 0;
+        function proofGo(n) {
+            proofCurrent = n;
+            document.getElementById('proof-track').style.transform = `translateX(-${n * 100}%)`;
+            document.getElementById('proof-dot-0').style.width = n === 0 ? '32px' : '8px';
+            document.getElementById('proof-dot-0').style.background = n === 0 ? '#C9A46A' : '#333';
+            document.getElementById('proof-dot-1').style.width = n === 1 ? '32px' : '8px';
+            document.getElementById('proof-dot-1').style.background = n === 1 ? '#C9A46A' : '#333';
+        }
+        // Swipe
+        let pStartX = 0;
+        const pTrack = document.getElementById('proof-track');
+        if (pTrack) {
+            pTrack.addEventListener('touchstart', e => { pStartX = e.touches[0].clientX; }, { passive: true });
+            pTrack.addEventListener('touchend', e => {
+                const diff = pStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) proofGo(diff > 0 ? 1 : 0);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-section').forEach(s => observer.observe(s));
+        });
+    </script>
+</body>
+</html>
