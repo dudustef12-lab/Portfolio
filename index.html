@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synapse Créatif — Études de cas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-main: 'Inter', sans-serif;
+      --text-primary: #1C1C1C;
+      --text-secondary: #5A5A5A;
+      --bg-primary: #F4EFE8;
+    }
+    body { margin: 0; font-family: var(--font-main); color: var(--text-primary); background-color: var(--bg-primary); -webkit-font-smoothing: antialiased; }
+    main { display: flex; flex-direction: column; }
+    .intro-section-branding { padding: 120px 5% 60px; }
+    .container-narrow { max-width: 65ch; margin: 0 auto; }
+    .intro-lead { font-size: 26px; line-height: 1.45; font-weight: 400; }
+    .intro-lead strong { font-weight: 600; }
+    .lead-break { display: block; margin-top: 24px; color: var(--text-secondary); font-size: 22px; font-weight: 300; }
+    .offers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; padding: 0 5% 80px; max-width: 1200px; margin: 0 auto; }
+    .offer-item { display: flex; flex-direction: column; padding: 40px; border-radius: 8px; transition: background-color 0.4s ease; text-decoration: none; color: inherit; cursor: pointer; }
+    .offer-item:hover { background-color: #ECE7DF; }
+    .offer-badge { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; color: var(--text-secondary); margin-bottom: 24px; }
+    .offer-title { font-size: 24px; font-weight: 500; margin: 0 0 40px 0; line-height: 1.5; }
+    .offer-link { font-size: 14px; font-weight: 600; color: var(--text-primary); text-decoration: none; padding-bottom: 3px; display: inline-block; align-self: flex-start; border-bottom: 1.5px solid var(--text-primary); transition: opacity 0.2s ease; margin-top: auto; }
+    .offer-link:hover { opacity: 0.7; }
+    .social-mini-section { padding: 0 5% 80px; display: flex; justify-content: center; gap: 24px; }
+    .social-link { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(28,28,28,0.1); color: var(--text-primary); text-decoration: none; transition: all 0.3s ease; }
+    .social-link:hover { background-color: var(--text-primary); color: var(--bg-primary); transform: translateY(-2px); }
+    .social-link svg { width: 20px; height: 20px; stroke-width: 1.5; }
+    @media (max-width: 991px) {
+      .intro-section-branding { padding: 80px 5% 40px; }
+      .offers-grid { grid-template-columns: 1fr; gap: 60px; padding: 0 5% 60px; }
+      .offer-title { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="intro-section-branding">
+    <div class="container-narrow">
+      <h1 class="intro-lead">
+        <strong>Études de cas</strong>
+        <span class="lead-break">Explorer comment la structure visuelle influence la perception d'une marque et la mise en scène de ses produits.</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="offers-grid">
+    <a class='offer-item' href='/case-study-1'>
+      <span class="offer-badge">Structure visuelle — Étude 01</span>
+      <h3 class="offer-title">Quand une marque parle<br>plusieurs langages visuels,<br>son identité s'efface.</h3>
+      <span class="offer-link">Voir l'étude →</span>
+    </a>
+    <a class='offer-item' href='/case-study-2'>
+      <span class="offer-badge">Perception de marque — Étude 02</span>
+      <h3 class="offer-title">Un bon produit ne suffit pas.<br>Sans structure visuelle,<br>la perception s'effondre.</h3>
+      <span class="offer-link">Voir l'étude →</span>
+    </a>
+    <a class='offer-item' href='/case-study-3'>
+      <span class="offer-badge">Cohérence de marque — Étude 03</span>
+      <h3 class="offer-title">Quand le minimalisme<br>est mal calibré,<br>la valeur s'effondre.</h3>
+      <span class="offer-link">Voir l'étude →</span>
+    </a>
+    <a class='offer-item' href='/packshots'>
+      <span class="offer-badge">Packshots — Étude 04</span>
+      <h3 class="offer-title">Le mouvement sculpte<br>ce que l'image fixe<br>ne peut que suggérer.</h3>
+      <span class="offer-link">Voir les réalisations →</span>
+    </a>
+  </section>
+
+  <section class="social-mini-section">
+    <a href="https://www.linkedin.com/in/stefan-atanowski-69b56b3aa/" class="social-link" aria-label="LinkedIn" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </a>
+    <a href="https://www.instagram.com/stefan.da.synapse.creatif/" class="social-link" aria-label="Instagram" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"></circle></svg>
+    </a>
+  </section>
+</main>
+</body>
+</html>
